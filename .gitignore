@@ -37,3 +37,6 @@ server/.env.production
 .netlify
 .railway
 
+# Ignore all markdown files
+*.md
+
