@@ -127,38 +127,33 @@ const Auth = () => {
         state: registerData.state,
       });
 
-      console.log('🔍 Registration result:', result);
-      console.log('🔍 result.requiresVerification value:', result.requiresVerification);
-      console.log('🔍 result.requiresVerification type:', typeof result.requiresVerification);
-      console.log('🔍 Boolean check:', result.requiresVerification === true);
+      console.log('🔍 Registration result:', JSON.stringify(result, null, 2));
+      console.log('🔍 result.requiresVerification:', result?.requiresVerification);
 
       // Check if OTP verification is required
-      if (result.requiresVerification) {
-        console.log('🎯 Showing OTP verification screen');
-        console.log('Setting OTP data:', {
+      if (result && result.requiresVerification) {
+        console.log('🎯 Showing OTP verification screen with data:', {
           hospital_id: result.hospital_id,
           email: result.email,
           hospitalName: result.hospitalName,
         });
         
-        setOtpData({
-          hospital_id: result.hospital_id,
-          email: result.email,
-          hospitalName: result.hospitalName,
-        });
+        const newOtpData = {
+          hospital_id: result.hospital_id || "",
+          email: result.email || "",
+          hospitalName: result.hospitalName || "",
+        };
         
-        console.log('Setting showOTPVerification to TRUE');
+        setOtpData(newOtpData);
         setShowOTPVerification(true);
-        
-        console.log('showOTPVerification state should now be true');
+        setLoading(false);
         
         toast({
           title: "Check Your Email!",
           description: "We've sent a 6-digit OTP to verify your email address.",
         });
-        setLoading(false);
         
-        console.log('Registration handler complete - OTP screen should be visible');
+        console.log('✅ OTP state set - screen should switch now');
         return;
       }
 

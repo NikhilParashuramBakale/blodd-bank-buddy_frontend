@@ -82,20 +82,28 @@ export function useEmailAuth() {
 
         const data = await response.json();
         
-        console.log('📝 Registration response:', data);
-        console.log('📝 data.data:', data.data);
+        console.log('📝 Registration response:', JSON.stringify(data, null, 2));
+        console.log('📝 data.data:', JSON.stringify(data.data, null, 2));
         console.log('📝 data.data.requiresVerification:', data.data?.requiresVerification);
+        console.log('📝 data.success:', data.success);
         
-        // Check if OTP verification is required
-        if (data.data && data.data.requiresVerification) {
+        // Check if OTP verification is required - check both data.data and data directly
+        const requiresVerification = data.data?.requiresVerification || data.requiresVerification;
+        const hospitalId = data.data?.hospital_id || data.hospital_id;
+        const responseEmail = data.data?.email || data.email;
+        const hospitalName = data.data?.hospitalName || data.hospitalName;
+        
+        console.log('📝 requiresVerification (resolved):', requiresVerification);
+        
+        if (requiresVerification) {
           console.log('✅ OTP verification required - showing OTP screen');
           // Don't set auth state yet - wait for OTP verification
           return { 
             success: true, 
             requiresVerification: true,
-            hospital_id: data.data.hospital_id,
-            email: data.data.email,
-            hospitalName: data.data.hospitalName,
+            hospital_id: hospitalId,
+            email: responseEmail,
+            hospitalName: hospitalName,
           };
         }
 
