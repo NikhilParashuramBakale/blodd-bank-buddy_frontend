@@ -8,6 +8,7 @@ import { msalInstance } from "@/integrations/azure/msalConfig";
 import { DashboardLayout } from "@/components/DashboardLayout";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { AuthProvider } from "@/context/AuthContext";
+import BackendHealthCheck from "@/components/BackendHealthCheck";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
@@ -28,6 +29,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
+          <BackendHealthCheck>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />
@@ -91,6 +93,7 @@ const App = () => (
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
+          </BackendHealthCheck>
         </TooltipProvider>
       </QueryClientProvider>
     </AuthProvider>

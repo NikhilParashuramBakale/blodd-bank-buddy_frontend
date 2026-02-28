@@ -246,7 +246,7 @@ const Donors = () => {
         <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-pink-400/10 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000"></div>
       </div>
 
-      <div className="relative z-10 p-6 space-y-6 animate-in fade-in duration-500">
+      <div className="relative z-10 p-6 space-y-6 animate-in fade-in duration-500 w-full max-w-full">
         <div className="flex justify-between items-center">
           <div>
             <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-400">
@@ -261,7 +261,7 @@ const Donors = () => {
         </div>
 
         {/* Donors List */}
-        <Card className="glass-panel border-white/40 shadow-xl overflow-hidden">
+        <Card className="glass-panel border-white/40 shadow-xl overflow-hidden w-full">
           <CardContent className="p-0">
             {donors.length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 text-muted-foreground">
@@ -272,7 +272,7 @@ const Donors = () => {
                 <p className="text-sm">Add your first donor to get started</p>
               </div>
             ) : (
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto w-full">
                 <Table>
                   <TableHeader className="bg-gray-50/50 backdrop-blur-sm">
                     <TableRow className="border-b border-gray-100 hover:bg-transparent">
