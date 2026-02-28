@@ -1,0 +1,19 @@
+# Ignore list for Docker builds
+.git
+.github
+.gitignore
+README.md
+*.md
+node_modules
+npm-debug.log
+.env.example
+.env.local
+docker-compose.yml
+Dockerfile
+.dockerignore
+test-*.js
+verify-*.js
+*.test.js
+coverage
+.vscode
+.idea
